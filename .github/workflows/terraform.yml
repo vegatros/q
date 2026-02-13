@@ -17,6 +17,7 @@ jobs:
   terraform:
     name: Terraform
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     strategy:
       matrix:
         directory: [ec2]
@@ -44,7 +45,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
       
       - name: Terraform Init
-        run: terraform init
+        run: terraform init -input=false
       
       - name: Terraform Format
         run: terraform fmt -check
