@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        directory: [bedrock, ec2, ecs, eks, iam]
+        directory: [ec2]
     
     permissions:
       id-token: write
