@@ -52,4 +52,5 @@ resource "aws_bedrockagent_agent" "main" {
 resource "aws_bedrockagent_agent_alias" "main" {
   agent_alias_name = "prod"
   agent_id         = aws_bedrockagent_agent.main.agent_id
+  description      = "Production alias"
 }
