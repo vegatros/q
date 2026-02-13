@@ -1,14 +1,13 @@
 name: Terraform
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - 'terraform/**'
   push:
     branches:
       - master
-    paths:
-      - 'terraform/**'
 
 env:
   AWS_REGION: us-east-1
