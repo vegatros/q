@@ -1,0 +1,15 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Large binaries
+*.zip
+terraform/ec2/bin/
+terraform/iam/roles/.terraform/
+
+# Executables
+q
+qterm
+qchat
+q-binary

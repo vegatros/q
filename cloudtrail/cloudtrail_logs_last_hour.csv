@@ -1,0 +1,3 @@
+Event ID,Event Name,Event Time,Event Source,Username,Read Only,Access Key ID,AWS Region,Source IP
+9e748379-939f-32ae-a9c1-13cdae8ca46a,AssumeRole,2026-02-12T16:08:46-05:00,sts.amazonaws.com,AWSService,true,,us-east-1,cloudtrail.amazonaws.com
+85f7fa51-acfa-3524-8c50-f21cdcd4cc66,AssumeRole,2026-02-12T16:07:21-05:00,sts.amazonaws.com,AWSService,true,,us-east-1,cloudtrail.amazonaws.com
