@@ -1,4 +1,4 @@
-name: CodeGuru Reviewer
+name: CodeGuru Security
 
 on:
   pull_request:
@@ -15,8 +15,8 @@ permissions:
   security-events: write
 
 jobs:
-  codeguru:
-    name: CodeGuru Review
+  codeguru-security:
+    name: CodeGuru Security Scan
     runs-on: ubuntu-latest
     
     steps:
@@ -31,14 +31,15 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
       
-      - name: CodeGuru Reviewer
-        uses: aws-actions/codeguru-reviewer@v1.1
+      - name: CodeGuru Security Scan
+        uses: aws-actions/codeguru-security@v1
         with:
-          build_path: .
-          s3_bucket: terraform-state-925185632967
+          source_path: .
+          aws_region: us-east-1
+          fail_on_severity: Critical
       
-      - name: Upload SARIF
+      - name: Upload Results
         if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: codeguru-results.sarif.json
+          sarif_file: codeguru-security-results.sarif.json
