@@ -104,7 +104,7 @@ resource "aws_security_group" "ec2" {
 
 # EC2 Instances
 resource "aws_instance" "app" {
-  count                  = 1
+  count                  = 2
   ami                    = data.aws_ami.amazon_linux.id
   instance_type          = var.instance_type
   subnet_id              = aws_subnet.private[count.index].id
