@@ -25,14 +25,24 @@ jobs:
       - name: Run Checkov
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: ec2
+          directory: terraform/ec2
           framework: terraform
           output_format: sarif
           output_file_path: checkov-results.sarif
           soft_fail: true
       
-      - name: Upload Results
+      - name: Check for SARIF file
+        id: check_sarif
         if: always()
+        run: |
+          if [ -f "checkov-results.sarif" ]; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Upload Results
+        if: always() && steps.check_sarif.outputs.exists == 'true'
         uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: checkov-results.sarif
