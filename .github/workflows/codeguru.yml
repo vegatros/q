@@ -37,9 +37,11 @@ jobs:
           source_path: .
           aws_region: us-east-1
           fail_on_severity: Critical
+          output_format: sarif
       
       - name: Upload Results
         if: always()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: codeguru-security-results.sarif.json
+          category: codeguru-security
