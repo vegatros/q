@@ -27,8 +27,8 @@ jobs:
         with:
           directory: terraform/ec2
           framework: terraform
-          output_format: sarif
-          output_file_path: checkov-results.sarif
+          output_format: cli,sarif
+          output_file_path: console,checkov-results.sarif
           soft_fail: true
       
       - name: Check for SARIF file
