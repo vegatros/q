@@ -25,7 +25,7 @@ jobs:
       - name: Run Checkov
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: .
+          directory: ec2
           framework: terraform
           output_format: sarif
           output_file_path: checkov-results.sarif
