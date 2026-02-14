@@ -55,7 +55,7 @@ jobs:
       
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color
+        run: terraform plan -no-color -out=tfplan
         continue-on-error: true
       
       - name: Comment PR
@@ -75,6 +75,15 @@ jobs:
               body: output
             })
       
+      - name: Wait for Approval
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: vegatros
+          minimum-approvals: 1
+          issue-title: "Terraform Apply Approval - ${{ matrix.directory }}"
+      
       - name: Terraform Apply
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-        run: terraform apply -auto-approve
+        run: terraform apply tfplan
