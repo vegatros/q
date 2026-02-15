@@ -23,12 +23,12 @@ jobs:
           fetch-depth: 0  # Full history for better analysis
       
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
+        uses: sonarsource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: >
             -Dsonar.projectKey=aws-terraform-infra
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
             -Dsonar.sources=terraform/
             -Dsonar.exclusions=**/*.tfstate,**/*.tfvars
